@@ -167,4 +167,33 @@ eureka:
   	}
 	
 	
+Discovering Services as a Client: Two Options
+
+1) Eureka server Specific
+  - @Inject
+  - EurekaClient client
+
+Using the EurekaClient: getNextServerFromEureka - pick the next instance using round-robin
+
+- 1st argument - virtual host name or service id of service to call 
+  By default, apps use the spring.application.name as their virtual hostname when registering
+- 2nd argument - whether or not this is a secure request
+
+InstanceInfo instance = eurekaClient.getNextServerFromEureka("service-id", false);
+String baseUrl = instance.getHomePageUrl();
+
+
+  
+2) Discovery server agnostic. ( this is spring discovery client not nettlix discovery client) 
+  - DiscoveryClient client
+  
+Using the Spring DiscoveryClient
+getInstance - return all instances of the given service id
+- 1st argument - virtual host name or service id of service to call 
+- By default, apps use the spring.application.name as the virtual hostname when registering 
+
+List<ServiceInstance> instances = client.getInstances("service-id");
+String baseUrl = instances.get(0).getUri().toString();
+ 
+
 	
