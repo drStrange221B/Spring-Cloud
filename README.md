@@ -73,4 +73,27 @@ public class SpringCloudServiceDiscoveryApplication {
 }
 
 
+Application Service
+Provides some application functionality
+The receive of requests 
+A dependency of other services 
+One or more instances
+User of the discovery client
+- Register
+- Deregister
+
+pom.xml
+
+<dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-dependencies</artficatId>
+			<version>Camden.SR2</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+	
   
