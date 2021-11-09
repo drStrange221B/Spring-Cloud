@@ -19,4 +19,30 @@ Discovering Service with Spring Cloud
 - Dashboard
 - AWS Support
 
+An actively managed registry of service locations
+source of truth
+one or more instances
+Spring Cloud Project
+- Spring Cloud Eureka Server
+
+pom.xml
+Using Spring Cloud Eureka Server
+
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+</dependency>
+
+<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 
