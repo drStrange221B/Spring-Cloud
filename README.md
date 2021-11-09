@@ -50,7 +50,10 @@ An actively managed registry of service locations
 
 
 application.properties
-spring.application.name = discovery-server
+spring.application.name = discovery-server  # false for only one server
+eureka.client.register-with-eureka=false # false for only one server
+eureka.client.fetch-registry=false
+server.port=8761
 
 application.yml
 spring:
@@ -58,4 +61,16 @@ spring:
   name: discovery-server
   
   
+Application.java
+@SpringBootApplication
+@EnableEurekaServer
+public class SpringCloudServiceDiscoveryApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringCloudServiceDiscoveryApplication.class, args);
+	}
+
+}
+
+
   
