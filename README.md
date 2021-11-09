@@ -25,6 +25,9 @@ An actively managed registry of service locations
 - Spring Cloud Project
 - Spring Cloud Eureka Server
 
+
+###################### configuration of Discovery Server ###########################
+
 - pom.xml
 - Using Spring Cloud Eureka Server
 
@@ -46,3 +49,13 @@ An actively managed registry of service locations
  </dependencyManagement>
 
 
+application.properties
+spring.application.name = discovery-server
+
+application.yml
+spring:
+ application:
+  name: discovery-server
+  
+  
+  
