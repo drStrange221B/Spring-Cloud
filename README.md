@@ -1,5 +1,5 @@
 # Spring-Cloud
-<!--
+
 Netflix OSS + Spring + SpringBoot = Spring Cloud Netflix
 
 Service discovery
@@ -45,4 +45,4 @@ An actively managed registry of service locations
 		</dependencies>
  </dependencyManagement>
 
--->
+
