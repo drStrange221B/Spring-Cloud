@@ -116,5 +116,55 @@ eureka:
    
    
 
+Application Client: application client can be both client and service.
+- Calls another application service to implement its functionality
+- The issuer of requests 
+- Depends on other service
+- User of the discovery client
+  to find service locations 
+  
+  Using Spring Cloud Eureka Client in an Application Client
+  
+  pom.xml
+  
+  <dependencyManagement>
+	<dependencies>
+		<dependency>
+			<proupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-dependencies</artifactId>
+			<version>Camden.SRS</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+</dependencyMahagement>
 
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-eureka</artifactId>
+</dependency>
+
+application.properties
+spring.application.name = client
+spring.client.service-url.defaultZone = http://localhost:8761/eureka
+eureka.client.register-with-eureka=false
+
+application.yml
+spring:
+ application:
+  name: client
+eureka:
+ client:
+  server-url:
+   sefaultZone: http://localhost:8761/eureka
+  register-with-eureka: false
+  
+  Application.java
+  
+  @SpringBootApplication
+  @EnableDiscoveryClient
+  public class Application{
+  	}
+	
+	
 	
