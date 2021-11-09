@@ -1,5 +1,5 @@
 # Spring-Cloud
-
+<!--
 Netflix OSS + Spring + SpringBoot = Spring Cloud Netflix
 
 Service discovery
@@ -28,21 +28,21 @@ An actively managed registry of service locations
 - pom.xml
 - Using Spring Cloud Eureka Server
 
-- <dependency>
-		-	<groupId>org.springframework.cloud</groupId>
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-- </dependency>
+</dependency>
 
-- <dependencyManagement>
-	-	<dependencies>
-	-		<dependency>
-	-			<groupId>org.springframework.cloud</groupId>
-	-			<artifactId>spring-cloud-dependencies</artifactId>
-	-			<version>${spring-cloud.version}</version>
-	-			<type>pom</type>
-	-			<scope>import</scope>
-	-		</dependency>
-	-	</dependencies>
-- </dependencyManagement>
+<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+ </dependencyManagement>
 
-
+-->
