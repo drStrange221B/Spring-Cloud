@@ -96,4 +96,25 @@ pom.xml
 	</dependencies>
 </dependencyManagement>
 	
-  
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-eureka</artifactId>
+</dependency>
+
+application.properties
+spring.application.name = service
+eureka.client.service-url.defaultZone = http://localhost:8761/eureka
+
+application.yml
+spring:
+ application:
+  name: service
+eureka:
+ client:
+  service-url: 
+   defaultZone: http://localhost:8761/eureka
+   
+   
+
+
+	
