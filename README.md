@@ -196,4 +196,85 @@ List<ServiceInstance> instances = client.getInstances("service-id");
 String baseUrl = instances.get(0).getUri().toString();
  
 
+SPRING CLOUD EUREKA DASHBOARD
+	ENABLED BY DEFAULT
+	- eureka.dashboard.enabled = true
+	Display useful metadata and service status
+use below url: 
+	localhost:8761
+	
+	
+CONFIGURING SPRING CLOUD EUREKA
+	There are several different areas where you can configure Spring Cloud Eureka. there are mainly 3
+1) eureka.server.*
+2) eureka.client.*
+3) eureka.instance.*
+	
+1) EUREKA SERVER CONFIGURATION
+	Eureka Server - the discovery server: contains a registry of services that can be disovered
+ALL CONFIGURATION UNDER THE eureka.server prefix
+	EurekaServerConfigBean
+	
+2) Eureka Client Configuration ths is responsible for how the discovery client interacts with the Discovery server. 
+	Eureka Client - anything that can discover services
+ALL CONFIGURATION UNDER THE eureka.client prefix
+	EurekaClientConfigBean
+	
+3) EUREKA INSTANCE CONFIGURATION 
+	Eureka Instance - anything that registers itself with the Eureka Server to be discovered by others
+All CONFIGURATION UNDER THE eurika.instance prefix 
+	EurekaInstaneConfigBean
+
+	
+	SPRING CLOUD EUREKA: HEALTH AND HIGH AVAILABILITY
+
+- Regularly checks the status fo services
+- Clients sends heartbeats every 30 second ( default) 
+- Services removed after 90 secs of no heartbeats (default)
+- Can customize configuration to use /health endpoint
+	eureka.client.healthcheck.enabled
+	
+	
+- the registry is distributed (cashed locally on every client)
+- Clients can operate without discovery server
+- Fetches deltas to update registry.
+	
+	
+	AWS SUPPORT OF SPRING CLOUD EURICA SERVER
+	
+When an application that's using the Eureka Client starts up, it checks to see if it's running on an AWS instance. if it is, it calls out to the local metadata service and retrives some metadata about that instance. And it gets things that are specific to AWS. such as the Amazon Machine Image that's running or what 
+region it's running in or what zone. then it send that information up to the Disvovery Server when it registers. Given the facts that things can change so often in AWS, it is important that the Discovery Server be locatied at a well-know location, So Eureka ads support for Elastic IP binding. When a Eureka Server starts up and it notices that it's running in AWS, it will try to bind to the next available Elastic IP so that it has a static or well-known IP. Eureka Client is also zone aware with a preferene for the zone that it's currently running in. So it will try to contact the Discovery Server in its current zone. it it cannot reach one on current zone. Then it will try the next zone and tyr to find the next available Discovery server. And last you can configure the Eureka Client to fetch the registry of different remote regions. 
+	
+	CONFIGURING SPRINGCLOUD EUREKA FOR AWS
+	
+	@Configuration
+	public class AppConfig{
+	
+		@Bean
+                public EurekaInstanceConfigBean eurekaInstanceConfig (InetUtilsProperies properties){
+	
+	EurekaInstanceConfigBean bean = new EurekaInstanceConfigBean(new InetUtils(properties));
+	AmazonInfo info = AmazonInfo.Builder.newBuilder().autoBuild("eureka")';
+	bean.setDataCenterInfo(info);
+	return bean;
+	
+	
+	}
+	
+	}
+
+	Availability Zones Configuration in application.properties
+	eureka.client.availability-zones.[region] = [az1], [az2],[az3]
+	e.g
+	eureka.client.availability-zones.us-east-1 = us-east-1b, us-east-1e
+	
+	
+	Service URL Configuration in application.properties
+	eureka.client.service-url.[zone] = http://[eip-dns]/eureka
+	- * Use EIP DNS name. Do not use IP (as of version Eureka 1.4) 
+	
+	
+	
+
+	
 	
